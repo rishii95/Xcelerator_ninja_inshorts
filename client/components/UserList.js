@@ -15,7 +15,7 @@ constructor(props){
         console.log("rissshi");
         console.log(this.state.data);
         
-        this.props.getUsers("https://api.github.com/users");
+        this.props.getUsers("https://api.myjson.com/bins/12ch95");
 
 
     }
