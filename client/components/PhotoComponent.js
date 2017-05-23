@@ -9,22 +9,37 @@ import FlatButton from 'material-ui/FlatButton';
 export default class PhotoComponent extends React.Component {
 
     render() {
+    const style = {
+       marginBottom:15
+
+      }
         return (
             <div>
-    <Card>
-    <CardMedia>
+    <Card className="row" style={style}>
+    <CardMedia className="col-md-6">
 <Link to={`/view/${this.props.post.login}`}>
-                    <img src={this.props.post.avatar_url}  width="300"/>
-                </Link>    
+        <img src={this.props.post.avatar_url}  width="300"/>
+</Link>    
     </CardMedia>
-    <CardTitle title="Card title" subtitle="Card subtitle" />
+    <div className="col-md-6">
+    <CardTitle title="Card title"/>
     <CardText>
 {this.props.post.login}
     </CardText>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <CardActions>
-      <FlatButton label="Like" />
-      <FlatButton label="Dislike" />
+      <FlatButton> <span className="glyphicon glyphicon-thumbs-up"></span> Like </FlatButton>
+      <FlatButton> <span className="glyphicon glyphicon-thumbs-down"></span> Dislike </FlatButton>
+      <FlatButton> <span className="glyphicon glyphicon-bookmark"></span> Bookmark </FlatButton>
+
     </CardActions>
+    </div>
   </Card>
                           </div>
         );
