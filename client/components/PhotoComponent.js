@@ -22,6 +22,7 @@ constructor(props){
 getInitialState() {
     return {
       bgColor: null,
+      DisbgColor:null
     }
     
   }
@@ -30,7 +31,14 @@ getInitialState() {
  addlikes() {
      console.log("color",this.state.bgColor);
      if(this.state.bgColor==null)
-      	 {	this.setState({like: this.props.post.like+1});
+      	 {	
+               if(this.state.DisbgColor=='red')
+                {
+                  	this.setState({dislike: this.props.post.dislike});
+                    this.setState({DisbgColor: null });   
+
+                }
+               this.setState({like: this.props.post.like+1});
                 this.setState({
                     bgColor: 'blue'
                 });   
@@ -39,12 +47,36 @@ getInitialState() {
              {
                       console.log("else",this.state.bgColor);
 
-                 {	this.setState({like: this.props.post.like});
+                	this.setState({like: this.props.post.like});
                     this.setState({bgColor: null });   
-
            }
              }   
+            
+    addDislikes() {
+     console.log("color",this.state.DisbgColor);
+     if(this.state.DisbgColor==null)
+      	 {	    
+                if(this.state.bgColor=='blue')
+                {
+                    this.setState({like: this.props.post.like});
+                    this.setState({bgColor: null }); 
+
+                }
+               this.setState({dislike: this.props.post.dislike+1});
+                this.setState({
+                    DisbgColor: 'red'
+                });   
+           }
+             else
+             {
+                      console.log("else",this.state.DisbgColor);
+
+                 	this.setState({dislike: this.props.post.dislike});
+                    this.setState({DisbgColor: null });   
+           
+             }   
             }
+
     render() {
         
     const style = {
@@ -77,7 +109,7 @@ getInitialState() {
     <br/>
     <CardActions>
       <FlatButton style={FlatBtnstyle} onClick={this.addlikes.bind(this)}><Badge badgeContent={this.state.like} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-up" style={{color:this.state.bgColor}}></span> Like</Badge></FlatButton>
-      <FlatButton style={FlatBtnstyle} ><Badge badgeContent={this.state.dislike} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-down" id="DislikeBtn"></span> Dislike</Badge></FlatButton>
+      <FlatButton style={FlatBtnstyle} onClick={this.addDislikes.bind(this)}><Badge badgeContent={this.state.dislike} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-down" style={{color:this.state.DisbgColor}}></span> Dislike</Badge></FlatButton>
       <FlatButton style={FlatBtnstyle}><Badge  badgeStyle={{ display:'none'}}><span className="glyphicon glyphicon-bookmark" ></span> Bookmark</Badge></FlatButton>
 
     </CardActions>
