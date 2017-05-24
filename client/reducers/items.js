@@ -23,6 +23,19 @@ export function BookMarkItems(state = [], action) {
             return state;
     }
 }
+export function LikeItems(state = [], action) {
+        console.log("likesss",state);
+
+    console.log('insdide reducer');
+    console.log(action);
+    switch (action.type) {
+        case 'DISPLAYING_LIKED':
+            return action.like;
+
+        default:
+            return state;
+    }
+}
 export  function userLikes(state = [], action) {
             console.log("Inside userLikes",state);
     switch (action.type) {

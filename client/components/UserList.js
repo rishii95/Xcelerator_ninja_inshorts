@@ -15,14 +15,21 @@ constructor(props){
 	this.state=
 	{
 		data:this.props.users,
-        dataBM:this.props.BookMarkUsers
+        dataBM:this.props.BookMarkUsers,
+        dataLike:this.props.TotalLikes
        	}
 
 }
- addBM(txtval) {
+ addBM(index) {
        	  console.log(this.props.BookMarkUsers);
-      	 this.props.addBookMark(txtval,this.props.users,this.props.BookMarkUsers);
+      	 this.props.addBookMark(index,this.props.users,this.props.BookMarkUsers);
       	 	this.setState({dataBM: this.props.BookMarkUsers});
+      	
+	   }
+       addLikess(index) {
+       	  console.log(this.props.BookMarkUsers);
+      	 this.props.changeLikess(index,this.props.users,this.props.TotalLikes);
+      	 	this.setState({dataLike: this.props.TotalLikes});
       	
 	   }
     componentDidMount(){
@@ -59,7 +66,7 @@ constructor(props){
         if (this.props.view == 1) {
             view = 	<ul>
           	{filterUser.map((item,index)=>{
-                        return <PhotoComponent addbm={this.addBM.bind(this)} post={item} i={index} key={index} {...this.props}/>
+                        return <PhotoComponent addbm={this.addBM.bind(this)} addl={this.addLikess.bind(this)}  post={item} i={index} key={index} {...this.props}/>
           		})}
           	</ul>
         }

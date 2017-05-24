@@ -1,6 +1,20 @@
 import React from 'react';
 import PhotoComponent from './PhotoComponent';
 export default class DetailComponent extends React.Component{
+    constructor(props){
+	super(props);
+	this.state=
+	{
+		data:this.props.users,
+        dataBM:this.props.BookMarkUsers,
+        dataLike:this.props.TotalLikes
+       	}
+
+}
+    addLikess(index) {
+      	 this.props.changeLikess(index,this.props.users,this.props.TotalLikes);
+      	 	this.setState({dataLike: this.props.TotalLikes});
+	   }
     render(){
         //fetch the parameter from url!
         //post store the array of object after iteration from findIndex
@@ -10,7 +24,7 @@ export default class DetailComponent extends React.Component{
         return(
             <div>
                 <h1> DetailComponent</h1>
- 			    <PhotoComponent post={currPost} {...this.props} i={index}/>
+ 			    <PhotoComponent  addl={this.addLikess.bind(this)} post={currPost} {...this.props} i={index}/>
           </div>
         );
     }
