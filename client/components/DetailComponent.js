@@ -7,13 +7,19 @@ export default class DetailComponent extends React.Component{
 	{
 		data:this.props.users,
         dataBM:this.props.BookMarkUsers,
-        dataLike:this.props.TotalLikes
+        dataLike:this.props.TotalLikes,
+        dataDisLike:this.props.TotalDisLikes
+
        	}
 
 }
     addLikess(index) {
       	 this.props.changeLikess(index,this.props.users,this.props.TotalLikes);
       	 	this.setState({dataLike: this.props.TotalLikes});
+	   }
+       addDisLikess(index) {
+      	 this.props.changeDisLikess(index,this.props.users,this.props.TotalDisLikes);
+      	 	this.setState({dataDisLike: this.props.TotalDisLikes});
 	   }
     render(){
         //fetch the parameter from url!
@@ -24,7 +30,7 @@ export default class DetailComponent extends React.Component{
         return(
             <div>
                 <h1> DetailComponent</h1>
- 			    <PhotoComponent  addl={this.addLikess.bind(this)} post={currPost} {...this.props} i={index}/>
+ 			    <PhotoComponent  addl={this.addLikess.bind(this)} addDis={this.addDisLikess.bind(this)} post={currPost} {...this.props} i={index}/>
           </div>
         );
     }

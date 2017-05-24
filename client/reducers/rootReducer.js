@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { userItems,userLikes,BookMarkItems,setView,LikeItems} from './items';
+import { userItems,userLikes,BookMarkItems,setView,LikeItems,DisLikeItems} from './items';
 
 var rootReducer = combineReducers({
     // items,
@@ -9,7 +9,8 @@ var rootReducer = combineReducers({
     userLikes,
     BookMarkItems,
     setView,
-    LikeItems
+    LikeItems,
+    DisLikeItems
 });
 
 export default rootReducer;

@@ -28,6 +28,7 @@ export function userFetchDataSuccess(users) {
 }
             var BookMarkUsers=[];
 var TotalLikes =[];
+var TotalDisLikes =[];
 
 export function getUsers(url){
     return (dispatch)=>{
@@ -89,13 +90,44 @@ return (dispatch)=>{
                 dispatch(getTotalLikes(TotalLikes));
         
     }
-    console.log("Inside Bookmark",BookMarkUsers);
 }
  export function getTotalLikes(like){
 
     return {
         type: 'DISPLAYING_LIKED',
         like
+
+    }
+} 
+export function changeDisLikess(index,users,TotalDisLikes){
+    var flag=true,f=true;
+return (dispatch)=>{
+  
+    for(var i=0;i<TotalDisLikes.length;i++)
+    {
+
+        if(users[index].id==TotalDisLikes[i].id)
+        {
+
+        flag=false;
+        TotalDisLikes.splice(i,1);
+                 console.log("rrrrrrrrrrrrrrrrrrrrrr",TotalDisLikes.length);
+                 f=false;
+    }
+    
+    }
+    if(flag==true||(TotalDisLikes.length==0&&f==true))
+            TotalDisLikes.push(users[index]);
+
+                dispatch(getTotalDisLikes(TotalDisLikes));
+        
+    }
+}
+ export function getTotalDisLikes(Dislike){
+
+    return {
+        type: 'DISPLAYING_DISLIKED',
+        Dislike
 
     }
 } 

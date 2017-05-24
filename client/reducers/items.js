@@ -36,6 +36,18 @@ export function LikeItems(state = [], action) {
             return state;
     }
 }
+export function DisLikeItems(state = [], action) {
+        console.log("Dislikesss",state);
+
+    console.log('insdide reducer');
+    console.log(action);
+    switch (action.type) {
+        case 'DISPLAYING_DISLIKED':
+            return action.Dislike;
+        default:
+            return state;
+    }
+}
 export  function userLikes(state = [], action) {
             console.log("Inside userLikes",state);
     switch (action.type) {

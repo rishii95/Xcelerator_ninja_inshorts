@@ -16,20 +16,24 @@ constructor(props){
 	{
 		data:this.props.users,
         dataBM:this.props.BookMarkUsers,
-        dataLike:this.props.TotalLikes
+        dataLike:this.props.TotalLikes,
+        dataDisLike: this.props.TotalDisLikes
        	}
 
 }
  addBM(index) {
-       	  console.log(this.props.BookMarkUsers);
       	 this.props.addBookMark(index,this.props.users,this.props.BookMarkUsers);
       	 	this.setState({dataBM: this.props.BookMarkUsers});
       	
 	   }
        addLikess(index) {
-       	  console.log(this.props.BookMarkUsers);
       	 this.props.changeLikess(index,this.props.users,this.props.TotalLikes);
       	 	this.setState({dataLike: this.props.TotalLikes});
+      	
+	   }
+        addDisLikess(index) {
+      	 this.props.changeDisLikess(index,this.props.users,this.props.TotalDisLikes);
+      	 	this.setState({dataDisLike: this.props.TotalDisLikes});
       	
 	   }
     componentDidMount(){
@@ -66,7 +70,7 @@ constructor(props){
         if (this.props.view == 1) {
             view = 	<ul>
           	{filterUser.map((item,index)=>{
-                        return <PhotoComponent addbm={this.addBM.bind(this)} addl={this.addLikess.bind(this)}  post={item} i={index} key={index} {...this.props}/>
+                        return <PhotoComponent addbm={this.addBM.bind(this)} addl={this.addLikess.bind(this)} addDis={this.addDisLikess.bind(this)}  post={item} i={index} key={index} {...this.props}/>
           		})}
           	</ul>
         }
@@ -74,7 +78,7 @@ constructor(props){
             console.log("Inside diff view",this.props.BookMarkUsers);
             view = 	<ul>
           	{this.props.BookMarkUsers.map((item,index)=>{
-                        return <PhotoComponent addbm={this.addBM.bind(this)} post={item} i={index} key={index} {...this.props}/>
+                        return <PhotoComponent addbm={this.addBM.bind(this)} addl={this.addLikess.bind(this)} addDis={this.addDisLikess.bind(this)} post={item} i={index} key={index} {...this.props}/>
           		})}
           	</ul>
         }

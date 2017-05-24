@@ -44,28 +44,7 @@ AddsBookMark() {
                 
             
     addDislikes() {
-     console.log("color",this.state.DisbgColor);
-     if(this.state.DisbgColor==null)
-      	 {	    
-                if(this.state.bgColor=='blue')
-                {
-                    this.setState({like: this.props.post.like});
-                    this.setState({bgColor: null }); 
-
-                }
-               this.setState({dislike: this.props.post.dislike+1});
-                this.setState({
-                    DisbgColor: 'red'
-                });   
-           }
-             else
-             {
-                      console.log("else",this.state.DisbgColor);
-
-                 	this.setState({dislike: this.props.post.dislike});
-                    this.setState({DisbgColor: null });   
-           
-             }   
+    this.props.addDis(this.props.i);  
             }
     render() {
         // var BMcolor=null;
@@ -80,14 +59,25 @@ AddsBookMark() {
         var index=this.props.i;
         var lvalue=this.props.post.like;
         var lcolor=null;
-        var flag =false;
-       
-              for(var k=0;k<this.props.TotalLikes.length;k++)
+       var k=0;
+              for(k=0;k<this.props.TotalLikes.length;k++)
               {
             if(this.props.post.id==this.props.TotalLikes[k].id)
             {
                 lvalue=this.props.post.like+1;
                 lcolor="blue";
+                break;
+            }
+              }
+        var dvalue=this.props.post.dislike;
+        var dcolor=null;
+       
+              for(k=0;k<this.props.TotalDisLikes.length;k++)
+              {
+            if(this.props.post.id==this.props.TotalDisLikes[k].id)
+            {
+                dvalue=this.props.post.dislike+1;
+                dcolor="red";
                 break;
             }
               }
@@ -122,7 +112,7 @@ AddsBookMark() {
     <br/>
     <CardActions>
       <FlatButton style={FlatBtnstyle} onClick={this.addlikes.bind(this)}><Badge badgeContent={lvalue} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-up" style={{color:lcolor}}></span> Like</Badge></FlatButton>
-      <FlatButton style={FlatBtnstyle} onClick={this.addDislikes.bind(this)}><Badge badgeContent={this.state.dislike} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-down" style={{color:this.state.DisbgColor}}></span> Dislike</Badge></FlatButton>
+      <FlatButton style={FlatBtnstyle} onClick={this.addDislikes.bind(this)}><Badge badgeContent={dvalue} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-down" style={{color:dcolor}}></span> Dislike</Badge></FlatButton>
       <FlatButton style={FlatBtnstyle} onClick={this.AddsBookMark.bind(this)}><Badge  badgeStyle={{ display:'none'}}><span className="glyphicon glyphicon-bookmark" style={{color:this.state.bmcolor}}></span> Bookmark</Badge></FlatButton>
     </CardActions>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUsers,increment,addBookMark,getBookMark,changeView,changeLikess} from '../actions/items';
+import { getUsers,increment,addBookMark,getBookMark,changeView,changeLikess,changeDisLikess} from '../actions/items';
 import Main from './Main.component';
 
 const mapStateToProps = (state) => {
@@ -8,7 +8,9 @@ const mapStateToProps = (state) => {
         users: state.userItems,
         BookMarkUsers:state.BookMarkItems,
         view:state.setView,
-        TotalLikes:state.LikeItems
+        TotalLikes:state.LikeItems,
+        TotalDisLikes:state.DisLikeItems,
+        
     };
 }
 
@@ -20,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
         getBookMark: () => dispatch(getBookMark()),
         changeView: (view)=>dispatch(changeView(view)),
       	changeLikess:(index,users,TotalLikes)=> dispatch(changeLikess(index,users,TotalLikes)),
-
+        changeDisLikess:(index,users,TotalDisLikes)=> dispatch(changeDisLikess(index,users,TotalDisLikes)),
 
             };
 }
