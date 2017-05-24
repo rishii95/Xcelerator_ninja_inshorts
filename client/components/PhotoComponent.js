@@ -46,16 +46,16 @@ AddsBookMark() {
     addDislikes() {
     this.props.addDis(this.props.i);  
             }
+
+ shouldComponentUpdate(newProps, newState) {
+         console.log("Rrrrrrrrrrrr",this.props.BookMarkUsers.length);
+
+      if(this.props.view==0 &&  this.props.BookMarkUsers.length==0)
+    <h1>No Bookmarks</h1>
+    return true;
+   }
+  
     render() {
-        // var BMcolor=null;
-        // console.log("bmcolor",this.props.post.id==this.props.BookMarkUsers.id);
-        // for(var i=0;i<this.props.BookMarkUsers.length;i++)
-        // {
-        //     if(this.props.post.id==this.props.BookMarkUsers.id)
-        //     BMcolor='yellow';
-        //     else
-        //     BMcolor=null;
-        // }
         var index=this.props.i;
         var lvalue=this.props.post.like;
         var lcolor=null;
@@ -71,7 +71,6 @@ AddsBookMark() {
               }
         var dvalue=this.props.post.dislike;
         var dcolor=null;
-       
               for(k=0;k<this.props.TotalDisLikes.length;k++)
               {
             if(this.props.post.id==this.props.TotalDisLikes[k].id)
@@ -81,25 +80,43 @@ AddsBookMark() {
                 break;
             }
               }
-        console.log("LikeItems total",this.props.TotalLikes[index]);
-    const style = {
+        var bcolor=null;
+           for(k=0;k<this.props.BookMarkUsers.length;k++)
+              {
+            if(this.props.post.id==this.props.BookMarkUsers[k].id)
+            {
+                bcolor="yellow";
+                break;
+            }
+              }
+        const style = {
        marginBottom:15
 
       }
       const FlatBtnstyle = {
       height:60
 
-      }
-        return (
+    }
+    var views;
+    console.log("Rrrrrrrrrrrr",this.props.BookMarkUsers.length);
+    if(this.props.view==0 &&  !this.props.BookMarkUsers.length)
+    return (
             <div>
-    <Card className="row" style={style}>
+             <h1>No Bookmarks</h1>
+            </div>
+        );
+    
+    else{
+     return (
+            <div>
+             <Card className="row" style={style}>
     <CardMedia className="col-md-6">
 <Link to={`/view/${this.props.post.login}`}>
         <img src={this.props.post.avatar_url}  width="300"/>
 </Link>    
     </CardMedia>
     <div className="col-md-6">
-    <CardTitle title="Card title"/>
+    <CardTitle><h1>{this.props.post.login}</h1></CardTitle>
     <CardText>
 {this.props.post.login}
     </CardText>
@@ -113,11 +130,11 @@ AddsBookMark() {
     <CardActions>
       <FlatButton style={FlatBtnstyle} onClick={this.addlikes.bind(this)}><Badge badgeContent={lvalue} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-up" style={{color:lcolor}}></span> Like</Badge></FlatButton>
       <FlatButton style={FlatBtnstyle} onClick={this.addDislikes.bind(this)}><Badge badgeContent={dvalue} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-down" style={{color:dcolor}}></span> Dislike</Badge></FlatButton>
-      <FlatButton style={FlatBtnstyle} onClick={this.AddsBookMark.bind(this)}><Badge  badgeStyle={{ display:'none'}}><span className="glyphicon glyphicon-bookmark" style={{color:this.state.bmcolor}}></span> Bookmark</Badge></FlatButton>
+      <FlatButton style={FlatBtnstyle} onClick={this.AddsBookMark.bind(this)}><Badge  badgeStyle={{ display:'none'}}><span className="glyphicon glyphicon-bookmark" style={{color:bcolor}}></span> Bookmark</Badge></FlatButton>
     </CardActions>
-    </div>
-  </Card>
-                          </div>
-        );
+
+    </div>      </Card></div>
+     )}
+       
     }
 }

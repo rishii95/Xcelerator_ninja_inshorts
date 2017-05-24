@@ -13,6 +13,11 @@ export default class DetailComponent extends React.Component{
        	}
 
 }
+addBM(index) {
+      	 this.props.addBookMark(index,this.props.users,this.props.BookMarkUsers);
+      	 	this.setState({dataBM: this.props.BookMarkUsers});
+      	
+	   }
     addLikess(index) {
       	 this.props.changeLikess(index,this.props.users,this.props.TotalLikes);
       	 	this.setState({dataLike: this.props.TotalLikes});
@@ -29,8 +34,8 @@ export default class DetailComponent extends React.Component{
         const currPost =this.props.users[index];
         return(
             <div>
-                <h1> DetailComponent</h1>
- 			    <PhotoComponent  addl={this.addLikess.bind(this)} addDis={this.addDisLikess.bind(this)} post={currPost} {...this.props} i={index}/>
+                <h1> Card Details</h1>
+ 			    <PhotoComponent  addbm={this.addBM.bind(this)} addl={this.addLikess.bind(this)} addDis={this.addDisLikess.bind(this)} post={currPost} {...this.props} i={index}/>
           </div>
         );
     }

@@ -42,18 +42,24 @@ export function getUsers(url){
 }
 
 export function addBookMark(index,users,BookMarkUsers){
-    var flag=true;
+    var flag=true,f=true;
 return (dispatch)=>{
-    console.log("Inside Bookmark",users[index]);
     for(var i=0;i<BookMarkUsers.length;i++)
     {
         
         if(users[index].id==BookMarkUsers[i].id)
-        flag=false;
-    }
-    if(flag==true||BookMarkUsers.length==0)
-            BookMarkUsers.push(users[index]);
+       
+       {     
 
+           flag=false;
+        BookMarkUsers.splice(i,1);
+                 f=false;
+       }    
+}
+    if(flag==true)
+    {
+                BookMarkUsers.push(users[index]);
+    }
                 dispatch(getBookMark(BookMarkUsers));
         
     }

@@ -36,6 +36,21 @@ constructor(props){
       	 	this.setState({dataDisLike: this.props.TotalDisLikes});
       	
 	   }
+       BMaddBM(index) {
+      	 this.props.addBookMark(index,this.props.BookMarkUsers,this.props.BookMarkUsers);
+      	 	this.setState({dataBM: this.props.BookMarkUsers});
+      	
+	   }
+       BMaddLikess(index) {
+      	 this.props.changeLikess(index,this.props.BookMarkUsers,this.props.TotalLikes);
+      	 	this.setState({dataLike: this.props.TotalLikes});
+      	
+	   }
+        BMaddDisLikess(index) {
+      	 this.props.changeDisLikess(index,this.props.BookMarkUsers,this.props.TotalDisLikes);
+      	 	this.setState({dataDisLike: this.props.TotalDisLikes});
+      	
+	   }
     componentDidMount(){
         console.log("rissshi");
         console.log(this.state.data);
@@ -78,7 +93,7 @@ constructor(props){
             console.log("Inside diff view",this.props.BookMarkUsers);
             view = 	<ul>
           	{this.props.BookMarkUsers.map((item,index)=>{
-                        return <PhotoComponent addbm={this.addBM.bind(this)} addl={this.addLikess.bind(this)} addDis={this.addDisLikess.bind(this)} post={item} i={index} key={index} {...this.props}/>
+                        return <PhotoComponent addbm={this.BMaddBM.bind(this)} addl={this.BMaddLikess.bind(this)} addDis={this.BMaddDisLikess.bind(this)} post={item} i={index} key={index} {...this.props}/>
           		})}
           	</ul>
         }
