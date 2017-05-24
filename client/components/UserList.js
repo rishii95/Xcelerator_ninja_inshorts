@@ -71,6 +71,7 @@ constructor(props){
         }
         componentDidUpdate(){
             console.log('Component Did Update Called');
+            console.log(this.props.BookMarkUsers.length);
         }	
 
     render(){
@@ -91,11 +92,16 @@ constructor(props){
         }
         else if (this.props.view == 0) {
             console.log("Inside diff view",this.props.BookMarkUsers);
+            if(this.props.BookMarkUsers.length==0)
+            view=<div className="container"><h1>No Bookmarks</h1></div>
+            else
+            {
             view = 	<ul>
           	{this.props.BookMarkUsers.map((item,index)=>{
                         return <PhotoComponent addbm={this.BMaddBM.bind(this)} addl={this.BMaddLikess.bind(this)} addDis={this.BMaddDisLikess.bind(this)} post={item} i={index} key={index} {...this.props}/>
           		})}
           	</ul>
+            }
         }
 
         return (

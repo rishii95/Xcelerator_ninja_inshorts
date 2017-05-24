@@ -46,15 +46,6 @@ AddsBookMark() {
     addDislikes() {
     this.props.addDis(this.props.i);  
             }
-
- shouldComponentUpdate(newProps, newState) {
-         console.log("Rrrrrrrrrrrr",this.props.BookMarkUsers.length);
-
-      if(this.props.view==0 &&  this.props.BookMarkUsers.length==0)
-    <h1>No Bookmarks</h1>
-    return true;
-   }
-  
     render() {
         var index=this.props.i;
         var lvalue=this.props.post.like;
@@ -97,16 +88,8 @@ AddsBookMark() {
       height:60
 
     }
-    var views;
-    console.log("Rrrrrrrrrrrr",this.props.BookMarkUsers.length);
-    if(this.props.view==0 &&  !this.props.BookMarkUsers.length)
-    return (
-            <div>
-             <h1>No Bookmarks</h1>
-            </div>
-        );
+   
     
-    else{
      return (
             <div>
              <Card className="row" style={style}>
@@ -136,5 +119,5 @@ AddsBookMark() {
     </div>      </Card></div>
      )}
        
-    }
+    
 }
