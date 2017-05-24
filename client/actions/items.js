@@ -26,6 +26,7 @@ export function userFetchDataSuccess(users) {
         users
     };
 }
+            var BookMarkUsers=[];
 
 export function getUsers(url){
     return (dispatch)=>{
@@ -38,4 +39,35 @@ export function getUsers(url){
     }
 }
 
-   
+export function addBookMark(index,users,BookMarkUsers){
+return (dispatch)=>{
+    console.log("Inside Bookmark",users[index]);
+            BookMarkUsers.push(users[index]);
+
+                dispatch(getBookMark(BookMarkUsers));
+        
+    }
+    console.log("Inside Bookmark",BookMarkUsers);
+}
+   export function getBookMark(Bm){
+
+    return {
+        type: 'DISPLAYING_BOOK_MARKED',
+        Bm
+
+    }
+    } 
+export function increment(users,index){
+    console.log("inside increment",users);
+    return{
+        type:'INCREMENT_LIKES',
+        users,
+        index
+    };
+}
+export function changeView(view){
+    return {
+        type:'VIEW_CHANGED',
+        view
+    }
+}

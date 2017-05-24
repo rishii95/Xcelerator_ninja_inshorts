@@ -5,7 +5,7 @@ export default class DetailComponent extends React.Component{
         //fetch the parameter from url!
         //post store the array of object after iteration from findIndex
         var code =this.props.params.login;
-        const index =this.props.users.findIndex((post) =>post.login===code);
+        const index =this.props.users.findIndex((post)=>post.login===code);
         const currPost =this.props.users[index];
         return(
             <div>

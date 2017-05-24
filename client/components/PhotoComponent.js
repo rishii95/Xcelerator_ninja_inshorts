@@ -27,7 +27,9 @@ getInitialState() {
     
   }
   
-
+AddsBookMark() {
+	this.props.addbm(this.props.i);
+	   }
  addlikes() {
      console.log("color",this.state.bgColor);
      if(this.state.bgColor==null)
@@ -78,7 +80,6 @@ getInitialState() {
             }
 
     render() {
-        
     const style = {
        marginBottom:15
 
@@ -108,9 +109,9 @@ getInitialState() {
     <br/>
     <br/>
     <CardActions>
-      <FlatButton style={FlatBtnstyle} onClick={this.addlikes.bind(this)}><Badge badgeContent={this.state.like} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-up" style={{color:this.state.bgColor}}></span> Like</Badge></FlatButton>
+      <FlatButton style={FlatBtnstyle} onClick={this.addlikes.bind(this)}><Badge badgeContent={this.props.post.like} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-up" style={{color:this.state.bgColor}}></span> Like</Badge></FlatButton>
       <FlatButton style={FlatBtnstyle} onClick={this.addDislikes.bind(this)}><Badge badgeContent={this.state.dislike} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-down" style={{color:this.state.DisbgColor}}></span> Dislike</Badge></FlatButton>
-      <FlatButton style={FlatBtnstyle}><Badge  badgeStyle={{ display:'none'}}><span className="glyphicon glyphicon-bookmark" ></span> Bookmark</Badge></FlatButton>
+      <FlatButton style={FlatBtnstyle} onClick={this.AddsBookMark.bind(this)}><Badge  badgeStyle={{ display:'none'}}><span className="glyphicon glyphicon-bookmark" ></span> Bookmark</Badge></FlatButton>
 
     </CardActions>
     </div>
