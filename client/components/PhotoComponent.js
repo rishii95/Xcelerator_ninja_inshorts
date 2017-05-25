@@ -88,7 +88,7 @@ Read more</Link></span>}>
     
      return (
             <div>
-             <Card className="row" style={style}>
+             <Card className="container" style={style}>
     <CardMedia className="col-md-6">
 <Link to={`/view/${this.props.post.login}`}>
         <img onClick={this.changeRoutes.bind(this, 0)} src={this.props.post.avatar_url}  width="300"/>

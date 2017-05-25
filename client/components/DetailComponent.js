@@ -1,5 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router';
 import PhotoComponent from './PhotoComponent';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Tabs, Tab} from 'material-ui/Tabs';
+
 export default class DetailComponent extends React.Component{
     constructor(props){
 	super(props);
@@ -27,6 +31,14 @@ addBM(index) {
       	 	this.setState({dataDisLike: this.props.TotalDisLikes});
 	   }
     render(){
+        const style = {
+            float:'right',
+            bottom:'0px'
+        };
+          const styles = {
+                marginBottom:'10px',
+                marginLeft:'10px'
+                };
         //fetch the parameter from url!
         //post store the array of object after iteration from findIndex
         console.log("Detailssssssssss");
@@ -34,8 +46,12 @@ addBM(index) {
         const index =this.props.users.findIndex((post)=>post.login===code);
         const currPost =this.props.users[index];
         return(
-            <div>
-                <h1> Card Details</h1>
+            <div className="container">
+                <Link to={`/`}>
+                <Tabs  style={styles}>
+                        <Tab label="Back to Cards" value="a"></Tab>
+                </Tabs>              
+                 </Link>
  			    <PhotoComponent  addbm={this.addBM.bind(this)} addl={this.addLikess.bind(this)} addDis={this.addDisLikess.bind(this)} post={currPost} {...this.props} i={index}/>
           </div>
         );

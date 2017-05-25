@@ -89,7 +89,7 @@ constructor(props){
                   let filterUser=this.props.users;
             var view;
         if (this.props.view == 1) {
-            view = 	<ul>
+            view = 	<ul className="container">
           	{filterUser.map((item,index)=>{
                         return <PhotoComponent addbm={this.addBM.bind(this)} addl={this.addLikess.bind(this)} addDis={this.addDisLikess.bind(this)}  post={item} i={index} key={index} {...this.props}/>
           		})}
@@ -101,7 +101,7 @@ constructor(props){
             view=<div className="container"><h1>No Bookmarks</h1></div>
             else
             {
-            view = 	<ul>
+            view = 	<ul className="container">
           	{this.props.BookMarkUsers.map((item,index)=>{
                         return <PhotoComponent addbm={this.BMaddBM.bind(this)} addl={this.BMaddLikess.bind(this)} addDis={this.BMaddDisLikess.bind(this)} post={item} i={index} key={index} {...this.props}/>
           		})}
