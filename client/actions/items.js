@@ -151,3 +151,9 @@ export function changeView(view){
         view
     }
 }
+export function changeRoute(view){
+    return {
+        type:'ROUTE_CHANGED',
+        view
+    }
+}

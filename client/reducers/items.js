@@ -74,4 +74,12 @@ export function setView(state=1,action){
             return state;    
     }
 }
+export function routeView(state=1,action){
+    switch(action.type){
+        case 'ROUTE_CHANGED':
+            return action.view;
+        default:
+            return state;    
+    }
+}
 

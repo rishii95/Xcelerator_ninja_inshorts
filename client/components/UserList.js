@@ -51,11 +51,15 @@ constructor(props){
       	 	this.setState({dataDisLike: this.props.TotalDisLikes});
       	
 	   }
+       changeRoutes() {
+      if(this.props.routeView!=1)
+    this.props.changeRoute(!this.props.routeView);
+  }
     componentDidMount(){
         console.log("rissshi");
         console.log(this.state.data);
         
-        this.props.getUsers("https://api.myjson.com/bins/12ch95");
+        this.props.getUsers("http://localhost:8000/cards");
 
 
     }
@@ -75,6 +79,7 @@ constructor(props){
         }	
 
     render(){
+        {this.changeRoutes()};
         const style={
             position: 'fixed',
             bottom: '10px',

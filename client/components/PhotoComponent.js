@@ -3,11 +3,8 @@ import {Link} from 'react-router';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Badge from 'material-ui/Badge';
+import Truncate from 'react-truncate';
 
-/////
-////
-//this.props.i calls action.js which calls reducer
-////
 export default class PhotoComponent extends React.Component {
 constructor(props){
 	super(props);
@@ -19,34 +16,23 @@ constructor(props){
            	}
 
 }
-getInitialState() {
-    return {
-      bgColor: null,
-      DisbgColor:null,
-      bmcolor:null
-    }
-    
+  changeRoutes(value) {
+      if(this.props.routeView!=value)
+    this.props.changeRoute(!this.props.routeView);
   }
-  
+
 AddsBookMark() {
 	this.props.addbm(this.props.i);
-     this.setState({
-                    bmcolor: 'yellow'
-                }); 
+      
 	   }
  addlikes() {
      this.props.addl(this.props.i);
-     this.setState({
-                    bgcolor: 'blue'
-                }); 
-	   }
-   
-                
-            
+	   }   
     addDislikes() {
     this.props.addDis(this.props.i);  
             }
     render() {
+        console.log("routweeeeeeeeeeeeeee",this.props.routeView);
         var index=this.props.i;
         var lvalue=this.props.post.like;
         var lcolor=null;
@@ -88,28 +74,29 @@ AddsBookMark() {
       height:60
 
     }
-   
+   var route;
+   if(this.props.routeView==0)
+   route= <CardText>{this.props.post.desc}</CardText>
+   else
+   route= <CardText>   
+<Truncate lines={4} ellipsis={<span onClick={this.changeRoutes.bind(this, 0)}>... <Link to={`/view/${this.props.post.login}`}>
+Read more</Link></span>}>
+{this.props.post.desc}
+</Truncate>
+ </CardText>
+
     
      return (
             <div>
              <Card className="row" style={style}>
     <CardMedia className="col-md-6">
 <Link to={`/view/${this.props.post.login}`}>
-        <img src={this.props.post.avatar_url}  width="300"/>
+        <img onClick={this.changeRoutes.bind(this, 0)} src={this.props.post.avatar_url}  width="300"/>
 </Link>    
     </CardMedia>
     <div className="col-md-6">
     <CardTitle><h1>{this.props.post.login}</h1></CardTitle>
-    <CardText>
-{this.props.post.login}
-    </CardText>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+    {route}
     <CardActions>
       <FlatButton style={FlatBtnstyle} onClick={this.addlikes.bind(this)}><Badge badgeContent={lvalue} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-up" style={{color:lcolor}}></span> Like</Badge></FlatButton>
       <FlatButton style={FlatBtnstyle} onClick={this.addDislikes.bind(this)}><Badge badgeContent={dvalue} badgeStyle={{ top:10,left: 12}}><span className="glyphicon glyphicon-thumbs-down" style={{color:dcolor}}></span> Dislike</Badge></FlatButton>
