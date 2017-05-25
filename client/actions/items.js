@@ -137,14 +137,6 @@ return (dispatch)=>{
 
     }
 } 
-export function increment(users,index){
-    console.log("inside increment",users);
-    return{
-        type:'INCREMENT_LIKES',
-        users,
-        index
-    };
-}
 export function changeView(view){
     return {
         type:'VIEW_CHANGED',

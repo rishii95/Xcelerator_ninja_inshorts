@@ -48,24 +48,7 @@ export function DisLikeItems(state = [], action) {
             return state;
     }
 }
-export  function userLikes(state = [], action) {
-            console.log("Inside userLikes",state);
-    switch (action.type) {
-        case 'INCREMENT_LIKES':
 
-            var index = action.index;
-            
-            console.log("Inside userLikes",state);
-            return [
-                ...state.slice(0, index),
-                {...state[index], like: state[index].like + 1 },
-                ...state.slice(index + 1)
-            ];
-    console.log(action);
-    default:
-    return state;
-    }
-}
 export function setView(state=1,action){
     switch(action.type){
         case 'VIEW_CHANGED':
